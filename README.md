@@ -26,44 +26,7 @@ Next, you must install the service provider:
 
 ## Usage
 
-You can apply the ```https``` middleware like any other middleware.
-
-```php
-// routes/web.php
-
-Route::get('home', 'HomeController@index')->middleware('https');
-```
-You can also apply it in the __construct() method of a controller
-
-```php
-// app/Http/Controllers/ExampleController.php
-
-class ExampleController extends Controller
-{
-  public function __construct()
-  {
-    $this->middleware('https');
-  }
-  ...
-}
-```
-
-If you want to apply it system-wide, you can add this to your ```app/Http/Kernel.php```:
-
-```php
-// app/Http/Kernel.php
-
-...
-
-protected $middleware = [
-        // Your other system-wide middleware here
-        \M1guelpf\LaravelSSL\HttpsMiddleware::class,
-    ];
-
-...
-
-}
-```
+Your app is now HTTPS-only!
 
 ## Changelog
 
