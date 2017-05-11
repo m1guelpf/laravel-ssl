@@ -3,16 +3,19 @@
 namespace M1guelpf\LaravelSSL;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\URL;
 
 class LaravelSSLServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
      */
-    public function boot(Router $router)
+    public function boot()
     {
-        $router->aliasMiddleware('https', \M1guelpf\LaravelSSL\HttpsMiddleware::class);
+        if (config('app.env', 'prod') == 'prod' || config('app.env', 'production') == 'production')
+        {
+            URL::forceScheme('https');
+        }
     }
 
     /**
